@@ -23,8 +23,8 @@ def documentation():
     return render_template("documentation.html")
 
 # prediction route
-@app.route('/predict', methods=['POST'])
-def predict():
+@app.route('/predict_api', methods=['POST'])
+def predict_api():
     # get the data from the post request
     data = request.json['data']
     # convert data into array
@@ -35,6 +35,19 @@ def predict():
     prediction = model.predict(data)
     # return the prediction as json
     return jsonify({'prediction': prediction[0]})
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    # get the data from the post request
+    # converting input data into float
+    data = [float(x) for x in request.form.values()]
+    # convert data into array and reshape it in required format
+    data = np.array(data).reshape(1, -1)
+    # scale the data
+    data = scaler.transform(data)
+    # make prediction
+    prediction = model.predict(data)[0]
+    return render_template("home.html", prediction_text=f"The predicted price for this house is: {prediction}")
 
 
 if __name__ == '__main__': 
