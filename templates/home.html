@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home Page</title>
+    <title>House Price Predictor</title>
 </head>
 <body>
-    <h1>Welcome to My Home Page</h1>
-    <p>This is the content of my home page.</p>
+    <div>
+        <h1> House Price Predictor </h1>
+        <form action="{{url_for('predict')}}" method="post">
+            <input type="text" name="CRIM" placeholder="CRIM" required="required"/><br>
+            <input type="text" name="ZN" placeholder="ZN" required="required"/><br>
+            <input type="text" name="INDUS" placeholder="INDUS" required="required"/><br>
+            <input type="text" name="CHAS" placeholder="CHAS" required="required"/><br>
+            <input type="text" name="NOX" placeholder="NOX" required="required"/><br>
+            <input type="text" name="RM" placeholder="RM" required="required"/><br>
+            <input type="text" name="AGE" placeholder="AGE" required="required"/><br>
+            <input type="text" name="DIS" placeholder="DIS" required="required"/><br>
+            <input type="text" name="RAD" placeholder="RAD" required="required"/><br>
+            <input type="text" name="TAX" placeholder="TAX" required="required"/><br>
+            <input type="text" name="PTRATIO" placeholder="PTRATIO" required="required"/><br>
+            <input type="text" name="B" placeholder="B" required="required"/><br>
+            <input type="text" name="LSTAT" placeholder="LSTAT" required="required"/><br>            
+
+            <button type="submit">Predict</button>
+        </form>
+        <br>
+        <br> 
+    </div>
+    {{prediction_text}}
 </body>
 </html>
